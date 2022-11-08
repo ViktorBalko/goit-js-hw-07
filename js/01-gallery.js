@@ -1,5 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
+// console.log(galleryItems);
 
 const galleryList = document.querySelector(".gallery");
 const galleryCreate = createGalleryMarkup(galleryItems);
@@ -17,7 +18,7 @@ function createGalleryMarkup(elements) {
           </a>
        </div>`;
     }).join("");
-}
+};
 
 function onGalleryClick(event) {
   event.preventDefault();
@@ -25,15 +26,18 @@ function onGalleryClick(event) {
     return;
   }
 
-const specimen = basicLightbox.create(`<img src=${event.target.dataset.source} width="800" height="600" alt=${event.target.alt}>`);
+    const template = basicLightbox.create(`
+    <img src=${event.target.dataset.source} 
+    width="800"
+    height="600" alt=${event.target.alt}>`);
 
-    specimen.show();
+  template.show();
     
   galleryList.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      specimen.close();
+      template.close();
     }
   });
 }
 
-galleryList.addEventListener("click", onGalleryClick);
+  galleryList.addEventListener("click", onGalleryClick);
